@@ -9,14 +9,21 @@ namespace String_Calculator
         {
             StringBuilder temp = new StringBuilder();
             numbers = numbers.Replace("\n", ",");
-            int sum = 0;
-            for (int num = 0; num < numbers.Length; num++)
+            char delimiter = ',';
+            int sum = 0,num=0;
+
+            if(numbers.StartsWith("//"))
+            {
+                num = 3;
+                delimiter=numbers[2];
+            }
+            for (; num < numbers.Length; num++)
             {
 
                 if (numbers[num] >= 48 && numbers[num] <= 57)
                     temp.Append(numbers[num]);
 
-                if (numbers[num].Equals(',') || num == numbers.Length - 1)
+                if (numbers[num].Equals(delimiter) || num == numbers.Length - 1)
                 {
                     try
                     {

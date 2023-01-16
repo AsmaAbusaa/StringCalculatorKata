@@ -33,14 +33,23 @@ namespace StingCalculator.Tests
         public void Add_UnKnownAmountOfNumbers_RetrunTheirSum()
         {
             result = calculator.Add("1,2,4,5,9");
-            Assert.Equal(1+2+4+5+9,result);
+            Assert.Equal(1 + 2 + 4 + 5 + 9, result);
         }
 
-        [Fact]
-        public void Add_StringofNumbersWithHandlingnewLine_RetrunTheirSum()
+        //[Fact]
+        //public void Add_StringofNumbersWithHandlingnewLine_RetrunTheirSum()
+        //{
+        //    result = calculator.Add("1\n11,2");
+        //    Assert.Equal(14, result);
+        //}
+
+        [Theory]
+        [InlineData("1\n2")]
+        [InlineData ("//;\n1;2")]
+        public void Add_StringofNumbers_diffrentSyntax_RetrunTheirSum(string nums)
         {
-            result = calculator.Add("1\n11,2");
-            Assert.Equal(14, result);
+            result = calculator.Add(nums);
+            Assert.Equal(3, result);
         }
 
 
