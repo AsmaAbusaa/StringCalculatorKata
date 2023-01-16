@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace String_Calculator
@@ -8,37 +9,33 @@ namespace String_Calculator
         public int Add(string numbers)
         {
             StringBuilder temp = new StringBuilder();
+            StringBuilder negativeValues = new StringBuilder();
             numbers = numbers.Replace("\n", ",");
             char delimiter = ',';
-            int sum = 0,num=0;
+            int sum = 0, index = 0;
 
-            if(numbers.StartsWith("//"))
-            {
-                num = 3;
-                delimiter=numbers[2];
+            if (numbers.StartsWith("//")) {
+                index = 3;
+                delimiter = numbers[2];
             }
-            for (; num < numbers.Length; num++)
-            {
+            for (; index < numbers.Length; index++) {
 
-                if (numbers[num] >= 48 && numbers[num] <= 57)
-                    temp.Append(numbers[num]);
+                if (numbers[index] >= 48 && numbers[index] <= 57 || numbers[index] == '-')
+                    temp.Append(numbers[index]);
 
-                if (numbers[num].Equals(delimiter) || num == numbers.Length - 1)
-                {
-                    try
-                    {
-                        int val;
-                        val = Int32.Parse(temp.ToString());
-                        sum += val;
-                        temp.Clear();
-                    }
+                if (numbers[index].Equals(delimiter) || index == numbers.Length - 1) {
 
-                    catch (FormatException)
-                    {
-                        Console.WriteLine("Can't Parsed '{0}'", temp);
-                    }
+                    int value;
+                    value = Int32.Parse(temp.ToString());
+                    if (value > 0)
+                        sum += value;
+                    else negativeValues.Append(value+" ");
+                    temp.Clear();
+
                 }
             }
+            if (negativeValues.Length!=0)
+                throw new Exception($"negatives not allowed:{negativeValues}");
             return sum;
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using String_Calculator;
 using Xunit;
 
@@ -36,22 +37,24 @@ namespace StingCalculator.Tests
             Assert.Equal(1 + 2 + 4 + 5 + 9, result);
         }
 
-        //[Fact]
-        //public void Add_StringofNumbersWithHandlingnewLine_RetrunTheirSum()
-        //{
-        //    result = calculator.Add("1\n11,2");
-        //    Assert.Equal(14, result);
-        //}
-
         [Theory]
         [InlineData("1\n2")]
-        [InlineData ("//;\n1;2")]
+        [InlineData("//;\n1;2")]
         public void Add_StringofNumbers_diffrentSyntax_RetrunTheirSum(string nums)
         {
             result = calculator.Add(nums);
             Assert.Equal(3, result);
         }
 
+        [Fact]
+        public void Add_StringofNumbers_containeNegativeNumbers_RetrunError()
+        {
+            Action action = () => calculator.Add("1,4,-1,-4");
+
+            Exception exception = Assert.Throws<Exception>(action);
+
+            Assert.Equal("negatives not allowed:-1 -4 ", exception.Message);
+        }
 
 
 
