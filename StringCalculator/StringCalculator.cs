@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace String_Calculator
@@ -27,14 +26,14 @@ namespace String_Calculator
 
                     int value;
                     value = Int32.Parse(temp.ToString());
-                    if (value > 0)
+                    if (value > 0 && value <= 1000)
                         sum += value;
-                    else negativeValues.Append(value+" ");
+                    else if (value < 0) negativeValues.Append(value + " ");
                     temp.Clear();
 
                 }
             }
-            if (negativeValues.Length!=0)
+            if (negativeValues.Length != 0)
                 throw new Exception($"negatives not allowed:{negativeValues}");
             return sum;
         }

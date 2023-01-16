@@ -56,6 +56,13 @@ namespace StingCalculator.Tests
             Assert.Equal("negatives not allowed:-1 -4 ", exception.Message);
         }
 
+        [Fact]
+        public void Add_StringofNumbers_ignoreBigNumbers()
+        {
+            result = calculator.Add("1,4,1001");
+            Assert.Equal(5, result);
+
+        }
 
 
     }
