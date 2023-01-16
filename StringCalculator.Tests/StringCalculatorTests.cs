@@ -28,6 +28,12 @@ namespace StingCalculator.Tests
             result = calculator.Add("1,2");
             Assert.Equal(3, result);
         }
+        [Fact]
+        public void Add_UnKnownAmountOfNumbers_RetrunTheirSum()
+        {
+            result = calculator.Add("1,2,4,5,9");
+            Assert.Equal(1+2+4+5+9,result);
+        }
 
 
 
