@@ -5,6 +5,8 @@ namespace String_Calculator
 {
     public class StringCalculator
     {
+        private const int maxValue = 1000;
+
         public int Add(string numbers)
         {
             StringBuilder temp = new StringBuilder();
@@ -26,7 +28,7 @@ namespace String_Calculator
 
                     int value;
                     value = Int32.Parse(temp.ToString());
-                    if (value > 0 && value <= 1000)
+                    if (value > 0 && value <= maxValue)
                         sum += value;
                     else if (value < 0) negativeValues.Append(value + " ");
                     temp.Clear();
